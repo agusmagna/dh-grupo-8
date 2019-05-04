@@ -2,46 +2,50 @@
 <html lang="en" dir="ltr">
   <head>
     <meta charset="utf-8">
+    <link rel="stylesheet" href="css/styles.css">
+    <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>
       TIGOUT - Registro
     </title>
   </head>
   <body>
-    <h1>
-      Registro
-    </h1>
-    <form class="" action="index.php" method="post">
-      <p>
+<section class="form-container">
+    <form class="access-form" action="index.php" method="post">
+      <h1>
+        Registrate
+      </h1>
+      <div class="field-group">
         <label for="nombre">
           Nombre:
         </label>
         <input id="nombre" type="text" name="nombre" value="" required>
-      </p>
-      <p>
+      </div>
+      <div class="field-group">
         <label for="email">
           E-mail:
         </label>
         <input id="email" type="email" name="email" value="" required>
-      </p>
-      <p>
+      </div>
+      <div class="field-group">
         <label for="telefono">
           Teléfono (opcional):
         </label>
         <input id="telefono" type="text" name="telefono" value="">
-      </p>
-      <p>
+      </div>
+      <div class="field-group">
         <label for="pass">
           Contraseña:
         </label>
         <input id="pass" type="password" name="pass" value="" required>
-      </p>
-      <p>
+      </div>
+      <div class="field-group">
         <label for="confpass">
           Confirmar Contraseña:
         </label>
         <input id="confpass" type="password" name="confpass" value="" required>
-      </p>
-      <p>
+      </div>
+      <div class="field-group">
         <label for="conocio">
           ¿Cómo nos conoció?:
         </label>
@@ -65,16 +69,17 @@
             Negocios o Supermercados
           </option>
         </select>
-      </p>
-      <p>
+      </div>
+
         <button type="submit" name="button">
           Crear Cuenta
         </button>
+        
         <button type="reset" name="button">
           Reiniciar
         </button>
-      </p>
-    </form>
 
+    </form>
+</section>
   </body>
 </html>
