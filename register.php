@@ -10,7 +10,8 @@
     </title>
   </head>
   <body>
-<section class="form-container">
+    <?php require_once("nav.php") ?>
+    <section class="form-container">
     <form class="access-form" action="index.php" method="post">
       <h1>
         Registrate
@@ -74,7 +75,7 @@
         <button type="submit" name="button">
           Crear Cuenta
         </button>
-        
+
         <button type="reset" name="button">
           Reiniciar
         </button>

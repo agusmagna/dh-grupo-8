@@ -1,6 +1,66 @@
 *{
   box-sizing: border-box;
+  padding: 0;
+  margin: 0;
 }
+
+/* Navegador */
+
+header {
+  display: flex;
+  width: 100%;
+  font-family: "Syncopate",sans-serif;
+  text-transform: uppercase;
+  align-items: center;
+}
+header .logo {
+  width: 30%;
+}
+header .logo img{
+  width: 100%;
+  background-color: white;
+  padding: 20px;
+}
+.nav{
+  background-color: black;
+  display: flex;
+  width: 100%;
+  justify-content: space-around;
+  padding: 20px 0;
+  align-items: center;
+  font-size: 1rem;
+}
+nav {
+  width: 80%;
+}
+nav ul{
+  display: flex;
+  justify-content: space-around;
+}
+nav  ul li {
+  list-style-type: none;
+  color: white;
+  margin: auto 2%;
+  text-align: center;
+}
+nav  ul li:hover{
+  color:rgba(255, 255, 255, 0.8);
+}
+.login a{
+  color: white;
+  float: right;
+  font-size: 0.7em;
+  text-decoration: none;
+  margin: auto 2%;
+}
+.login a:hover {
+  color:rgba(255, 255, 255, 0.8);
+}
+.login a i {
+  font-size: 1.5rem;
+}
+
+/* FIN Navegador */
 body {
 	font-family: 'Roboto', sans-serif;
 	color: #000;

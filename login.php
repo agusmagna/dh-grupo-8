@@ -10,7 +10,7 @@
     </title>
   </head>
   <body>
-
+    <?php require_once("nav.php") ?>
     <section class="form-container">
 
       <h1>
