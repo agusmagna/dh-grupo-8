@@ -12,6 +12,7 @@ header {
   font-family: "Syncopate",sans-serif;
   text-transform: uppercase;
   align-items: center;
+
 }
 header .logo {
   width: 30%;
@@ -36,6 +37,7 @@ nav {
 nav ul{
   display: flex;
   justify-content: space-around;
+  align-items: center;
 }
 nav  ul li {
   list-style-type: none;
