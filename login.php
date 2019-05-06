@@ -10,6 +10,7 @@
     </title>
   </head>
   <body>
+    <div class="contenedor-login">
     <?php require_once("nav.php") ?>
     <section class="form-container">
 
@@ -30,13 +31,15 @@
           </label>
           <input type="password" id="passsword" name="password" placeholder="Password" value="" required>
         </div>
-      </div>
       <div class="field-group remember-me">
         <input type="checkbox" id="remember-me" name="remember-me" value="">
         <label for="remember-me">Recordarme</label>
       </div>
         <button type="submit" name="send">Ingresar</button>
       </form>
-</section>
+    </section>
+
+    <?php require_once("footer.php") ?>
+    </div>
   </body>
 </html>

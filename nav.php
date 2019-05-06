@@ -16,12 +16,12 @@ $menuNav = [
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css" integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
     <link href="https://fonts.googleapis.com/css?family=Syncopate" rel="stylesheet">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="css/styles.css">
+    <link rel="stylesheet" href="css/styles-nav-footer.css">
   </head>
   <body>
     <header>
       <div class="logo">
-        <img src="img/logo_sin_fondo.png" alt="Logo">
+        <img src="img/logo_sin_fondo_blanco.png" alt="Logo">
       </div>
       <div class="nav">
         <nav>

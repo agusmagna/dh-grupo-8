@@ -1,0 +1,137 @@
+*{
+  box-sizing: border-box;
+  padding: 0;
+  margin: 0;
+}
+
+/* Navegador */
+
+
+header {
+  display: flex;
+  align-items: center;
+}
+header .logo {
+  width: 20%;
+}
+header .logo img{
+  width: 100%;
+
+  padding: 20px;
+}
+.nav{
+  background-color: black;
+  display: flex;
+  width: 100%;
+  justify-content: space-around;
+  padding: 0;
+  align-items: center;
+  font-size: 1rem;
+}
+nav {
+  width: 80%;
+}
+nav ul{
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  margin-bottom: 0;
+}
+
+nav  ul li:hover,
+footer ul li:hover{
+  color:rgba(255, 255, 255, 0.8);
+}
+.login a{
+  color: white;
+  float: right;
+  font-size: 0.7em;
+  text-decoration: none;
+  margin: auto 2%;
+}
+.login a:hover {
+  color:rgba(255, 255, 255, 0.8);
+}
+.login a i {
+  font-size: 1.5rem;
+}
+
+/* Navegador y Footer */
+
+header,
+footer{
+  width: 100%;
+  font-family: "Syncopate",sans-serif;
+  text-transform: uppercase;
+  background-color: black;
+}
+nav  ul li,
+footer ul li {
+  list-style-type: none;
+  color: white;
+  margin: 0 2%;
+  text-align: center;
+}
+
+/* Footer */
+footer {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  padding-top: 10px;
+  padding-bottom: 10px;
+}
+.logo-footer {
+  width: 20%;
+  align-self: flex-start;
+  padding-top: 10px;
+  padding-left: 20px;
+}
+.logo-footer img {
+  width: 70%;
+}
+.footer-navegacion {
+  display: flex;
+  justify-content: space-around;
+  width: 60%;
+  align-items: center;
+}
+.footer-navegacion .footer-capsulas{
+  width: 30%;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+}
+.footer-navegacion .footer-capsula1{
+  margin: auto 2%;
+  transform: rotate(20deg);
+}
+.footer-navegacion .footer-capsula2{
+  margin: auto 2%;
+  transform: rotate(-20deg);
+}
+.footer-navegacion img {
+  width: 90%;
+
+}
+.footer-navegacion ul {
+  display: flex;
+  flex-direction: column;
+  width: 40%;
+}
+footer ul li {
+  font-weight: lighter;
+  font-size: 0.8rem;
+  margin-bottom: 5px;
+}
+.redes-sociales{
+  text-align: center;
+  width: 20%;
+}
+.redes-sociales h3{
+  color:white;
+  font-size: 0.8rem;
+}
+.redes-sociales .iconos{
+  color:white;
+}
