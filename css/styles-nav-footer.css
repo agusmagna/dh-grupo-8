@@ -16,7 +16,6 @@ header .logo {
 }
 header .logo img{
   width: 100%;
-
   padding: 20px;
 }
 .nav{
@@ -134,4 +133,62 @@ footer ul li {
 }
 .redes-sociales .iconos{
   color:white;
+}
+
+
+@media (max-device-width:480px) {
+  header {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    width: 100%;
+    flex-wrap: wrap;
+    align-items: center;
+  }
+  header .logo {
+    width: 100%;
+    border-bottom: 2px white solid;
+    margin-bottom: 10px;
+  }
+  header .logo img{
+    width: 60%;
+    display: block;
+    margin: 0 auto;
+  }
+  .nav {
+    display: flex;
+    flex-direction: column;
+  }
+  nav ul {
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+  }
+  nav ul li {
+    width: 100%;
+    margin: 5px 0;
+  }
+  .login {
+    display: flex;
+    margin: 10px 0;
+    justify-content: space-around;
+  }
+  .login a {
+    text-align: center;
+  }
+  .footer-navegacion .footer-capsulas {
+    display: none;
+  }
+  footer ul li {
+    font-size: 0.7rem;
+  }
+  footer .redes-sociales h3 {
+    display: none;
+  }
+  footer .logo-footer img {
+    width: 100%;
+  }
+  .footer-navegacion ul {
+    width: 100%;
+  }
 }
