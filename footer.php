@@ -36,7 +36,7 @@ for ($i=0; $i < 5; $i++) {
           <?php endforeach ?>
         </div>
         <ul>
-          <?php foreach ($menuNav as $opciones): ?>
+          <?php foreach ($menuNav as $key=>$opciones): ?>
             <li><a href="#<?=$key?>"><?=$opciones?></a></li>
           <?php endforeach ?>
         </ul>
@@ -50,7 +50,7 @@ for ($i=0; $i < 5; $i++) {
         <h3>Seguinos en</h3>
         <div class="iconos">
           <a href="https://es-la.facebook.com/tigout.AR/"><i class="fab fa-facebook-f"></i></a>
-          <a href="https://www.instagram.com/tigout.ar/"><i class="fab fa-instagram"></i></a> 
+          <a href="https://www.instagram.com/tigout.ar/"><i class="fab fa-instagram"></i></a>
         </div>
       </div>
     </footer>
