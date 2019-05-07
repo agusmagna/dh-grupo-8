@@ -180,7 +180,6 @@ body {
   display: flex;
   flex-direction: column;
   justify-content: space-around;
-  height: 85vh;
 
 }
 #productos .maquinas .imagen{
@@ -211,14 +210,15 @@ body {
 #productos .capsulas{
   flex-direction: column;
   display: flex;
-  height: 85vh;
   padding-top: 3vh;
 }
+
 #productos .capsulas .productos-destacados {
   display: flex;
   flex-wrap: wrap;
   justify-content: space-around;
   align-items: center;
+  background-color: white;
 }
 #productos .capsulas .productos-destacados .producto  {
   width: 40%;
