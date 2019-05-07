@@ -134,10 +134,12 @@ footer ul li {
 .redes-sociales{
   text-align: center;
   width: 20%;
+
 }
 .redes-sociales h3{
   color:white;
   font-size: 0.8rem;
+  padding-bottom: 10px;
 }
 .redes-sociales .iconos a{
   color:white;
