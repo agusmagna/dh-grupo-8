@@ -75,7 +75,7 @@ foreach ($saboresCodigo as $key => $value) {
       <h2>¿Sabés que significa TIGOÛT?</h2>
       <p>Es una palabra de origen francés que significa...</p>
       <div class="juego-nombre">
-        <p class="consigna">¡Pasá el cursor por las opciones para descubrir que significa!</p>
+        <p class="consigna">¡Pasá el cursor por las opciones para descubrirlo!</p>
         <div class="opciones">
           <div class="opcion-juego">
             <p>Ricas <br>porciones</p>
