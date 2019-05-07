@@ -7,7 +7,7 @@
 body {
 	font-family: "Syncopate",sans-serif;
 	color: #000;
-
+  font-size: 1rem;
 }
 /* Contenedor login y register */
 .contenedor-login,
@@ -16,10 +16,9 @@ body {
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-
-
 }
 /* Fin contenedor login y register */
+/* Login y Register */
 .form-container {
 	max-width: 350px;
 	margin: 0 auto;
@@ -66,7 +65,172 @@ body {
 .remember-me input {
 	width: auto;
 }
+/* Fin Login y Register */
 
+/* Home */
+#quienes-somos {
+  margin: 30px 2%;
+}
+#quienes-somos h1{
+  text-align: center;
+  font-weight: bold;
+  font-size: 3.5rem;
+}
+#quienes-somos .fundadores {
+  /* border: black solid 4px; */
+  margin: 6vh auto;
+}
+#quienes-somos .fundadores h2{
+  margin-top: 3vh;
+  text-align: center;
+  font-size: 2rem;
+}
+#quienes-somos .fundador{
+  display: flex;
+  justify-content: space-around;
+  margin: 4vh 5%;
+}
+#quienes-somos .fundadores img{
+  width: 15%;
+  height: 15%;
+}
+#quienes-somos .fundadores img:hover{
+  width: 17%;
+  height: 17%;
+}
+#quienes-somos .descripcion-empresa {
+  margin-top: 10vh;
+  display: flex;
+  justify-content: space-around;
+  text-align: center;
+}
+#quienes-somos .descripcion-empresa .comienzo,
+#quienes-somos .descripcion-empresa .recetas {
+  width: 50%;
+}
+#quienes-somos .descripcion-empresa .comienzo h2,
+#quienes-somos .descripcion-empresa .recetas h2 {
+  margin-bottom: 2vh;
+  font-size: 2rem;
+}
+
+#quienes-somos .descripcion-empresa .recetas p{
+  align-self: center;
+  margin-top: 7vh;
+}
+#quienes-somos .descripcion-nombre {
+  margin-top: 5vh;
+}
+#quienes-somos .descripcion-nombre h2{
+  font-size: 2rem;
+}
+#quienes-somos .descripcion-nombre h2,
+#quienes-somos .descripcion-nombre p{
+  text-align: center;
+  margin-bottom: 2vh;
+}
+#quienes-somos .descripcion-nombre .juego-nombre .consigna{
+  text-align: left;
+}
+#quienes-somos .descripcion-nombre .juego-nombre .opciones {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  margin: 4vh 0;
+}
+#quienes-somos .descripcion-nombre .juego-nombre .opciones .opcion-juego {
+  border-radius: 100%;
+  background-color: black;
+  color: white;
+  padding: 3% 2% 2% 2%;
+  text-align: center;
+  margin-bottom: 0;
+}
+#quienes-somos .descripcion-nombre .juego-nombre .opciones .opcion-juego:hover {
+  background-color: #fa3c3c;
+}
+
+#quienes-somos .descripcion-nombre .juego-nombre .opciones .opcion-juego:last-child:hover {
+  background-color: #d4e871;
+}
+
+/* Productos */
+#productos {
+  margin-top: 7vh;
+}
+#productos h1{
+  font-size: 3.5rem;
+  font-weight: bold;
+  text-align: center;
+  margin-bottom: 5vh;
+  text-transform: uppercase;
+}
+.maquinas-capsulas{
+  display: flex;
+  justify-content: space-around;
+}
+#productos .maquinas
+#productos .capsulas {
+  width: 50%;
+}
+#productos .maquinas{
+  background-color: black;
+  color: white;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  height: 85vh;
+
+}
+#productos .maquinas .imagen{
+  background-color: white
+}
+#productos .maquinas .imagen img {
+    width: 70%;
+    margin: 0 auto;
+    display: block;
+}
+#productos .maquinas h1,
+#productos .capsulas h1 {
+  padding-top: 2vh;
+  text-align: center;
+  font-size: 3rem;
+}
+#productos .maquinas h2 {
+  font-size: 2rem;
+}
+#productos .maquinas h2 a {
+  color:white;
+  font-size: 2rem;
+}
+#productos .maquinas h2 a:hover{
+  text-decoration: none;
+  color: rgba(255, 255, 255, 0.7);
+}
+#productos .capsulas{
+  flex-direction: column;
+  display: flex;
+  height: 85vh;
+  padding-top: 3vh;
+}
+#productos .capsulas .productos-destacados {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-around;
+  align-items: center;
+}
+#productos .capsulas .productos-destacados .producto  {
+  width: 40%;
+  text-align: center;
+  margin: 7vh 5%;
+}
+#productos .capsulas .productos-destacados .producto:hover{
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+#productos .capsulas .productos-destacados .producto .precio{
+  font-size: 0.8rem;
+}
 @media query (min-device-width:425px){
   .contenedor-login
   .contenedor-register {
