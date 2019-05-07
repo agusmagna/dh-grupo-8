@@ -262,12 +262,12 @@ body {
   font-family: "Syncopate",sans-serif;
   background-color: #000;
   color: #fff;
-  width: 55%;
+  width: 30%;
   padding: 8px 14px;
   cursor: pointer;
   text-transform: uppercase;
   margin-bottom: 10px;
-  
+
 
 }
 .field-contact input {
