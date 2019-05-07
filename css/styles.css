@@ -231,10 +231,55 @@ body {
 #productos .capsulas .productos-destacados .producto .precio{
   font-size: 0.8rem;
 }
-@media query (min-device-width:425px){
+@media (max-device-width:768px){
+  #quienes-somos .descripcion-empresa {
+    display: block;
+  }
+  #quienes-somos .descripcion-empresa .comienzo,
+  #quienes-somos .descripcion-empresa .recetas {
+    width: 100%;
+  }
+  #quienes-somos .descripcion-empresa .recetas p{
+    margin-top: 1vh;
+  }
+  #quienes-somos {
+    border-bottom: black 2px solid;
+    padding-bottom: 10px;
+  }
+  #productos .maquinas-capsulas{
+    display: block;
+  }
+  #productos .maquinas h1 {
+    padding-top: 5vh;
+  }
+  #productos .maquinas .imagen {
+    margin-bottom: 5vh;
+  }
+  #productos .maquinas {
+    padding-bottom: 3vh;
+  }
+  #quienes-somos .descripcion-nombre .juego-nombre .opciones .opcion-juego {
+    padding: 5vh 5%;
+}
+@media (max-device-width:425px){
   .contenedor-login
   .contenedor-register {
     height: auto;
     width: 100%;
+  }
+  #quienes-somos .descripcion-nombre .juego-nombre .opciones{
+    display: block;
+    padding: 1vh 1%;
+    width: 50%;
+    margin: 0 auto;
+  }
+  #quienes-somos .descripcion-nombre .juego-nombre .opciones .opcion-juego {
+    margin-bottom: 2vh;
+  }
+
+  #productos h1 {
+    padding-left: 2.5%;
+    padding-right: 2.5%;
+    font-size: 3rem;
   }
 }

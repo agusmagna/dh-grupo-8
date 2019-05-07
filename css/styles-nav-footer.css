@@ -143,7 +143,19 @@ footer ul li {
   color:white;
   margin: 2vh 1%;
 }
-
+@media (max-device-width:768px) {
+  header {
+    display: block;
+  }
+  .logo {
+    margin: 0 auto;
+  }
+  .login {
+    display: flex;
+    margin-top: 2vh;
+    margin-bottom: 2vh;
+  }
+}
 
 @media (max-device-width:480px) {
   header {
