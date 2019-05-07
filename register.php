@@ -2,7 +2,7 @@
 <html lang="en" dir="ltr">
   <head>
     <meta charset="utf-8">
-    <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Syncopate" rel="stylesheet">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
       <link rel="stylesheet" href="css/styles.css">
     <title>
@@ -10,6 +10,7 @@
     </title>
   </head>
   <body>
+    <div class="contenedor-register">
     <?php require_once("nav.php") ?>
     <section class="form-container">
     <form class="access-form" action="index.php" method="post">
@@ -84,5 +85,6 @@
 </section>
 
   <?php require_once("footer.php") ?>
+  </div>
   </body>
 </html>

@@ -5,16 +5,18 @@
 }
 
 body {
-	font-family: 'Roboto', sans-serif;
+	font-family: "Syncopate",sans-serif;
 	color: #000;
 
 }
 /* Contenedor login y register */
-.contenedor-login {
+.contenedor-login,
+.contenedor-register {
   height: 100vh;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
+
 
 }
 /* Fin contenedor login y register */
@@ -27,6 +29,7 @@ body {
 	text-transform: uppercase;
   font-size: 40px;
   margin: 20px auto;
+  padding-top: 10px;
 }
 .field-group {
 	margin-bottom: 20px;
@@ -41,15 +44,16 @@ body {
   color: #424242;
 }
 .access-form button {
-	font-size: 20px;
+	font-size: 16px;
+  font-family: "Syncopate",sans-serif;
   background-color: #000;
   color: #fff;
-  width: 100%;
+  width: 55%;
   padding: 8px 14px;
   cursor: pointer;
   text-transform: uppercase;
-  font-weight: bold;
   margin-bottom: 10px;
+
 }
 .field-group input {
 	width: 100%;
@@ -64,7 +68,8 @@ body {
 }
 
 @media query (min-device-width:425px){
-  .contenedor-login{
+  .contenedor-login
+  .contenedor-register {
     height: auto;
     width: 100%;
   }
