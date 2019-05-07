@@ -1,10 +1,11 @@
 <?php
 $menuNav = [
-  "Home",
-  "Quienes somos",
-  "Productos",
-  "Contacto",
+  "index.php"=>"Home",
+  "quienes-somos" => "Quienes somos",
+  "productos"=>"Productos",
+  "contacto"=>"Contacto",
 ];
+
 $divCapsula=[];
 for ($i=0; $i < 5; $i++) {
   if ($i%2==0) {
@@ -36,7 +37,7 @@ for ($i=0; $i < 5; $i++) {
         </div>
         <ul>
           <?php foreach ($menuNav as $opciones): ?>
-            <li><?=$opciones?></li>
+            <li><a href="#<?=$key?>"><?=$opciones?></a></li>
           <?php endforeach ?>
         </ul>
         <div class="footer-capsulas">
@@ -48,8 +49,8 @@ for ($i=0; $i < 5; $i++) {
       <div class="redes-sociales">
         <h3>Seguinos en</h3>
         <div class="iconos">
-          <i class="fab fa-facebook-f"></i>
-          <i class="fab fa-instagram"></i>
+          <a href="https://es-la.facebook.com/tigout.AR/"><i class="fab fa-facebook-f"></i></a>
+          <a href="https://www.instagram.com/tigout.ar/"><i class="fab fa-instagram"></i></a> 
         </div>
       </div>
     </footer>

@@ -1,9 +1,9 @@
 <?php
 $menuNav = [
-  "Home",
-  "Quienes somos",
-  "Productos",
-  "Contacto",
+  "index.php"=>"Home",
+  "quienes-somos" => "Quienes somos",
+  "productos"=>"Productos",
+  "contacto"=>"Contacto",
 ];
 
  ?>
@@ -26,8 +26,8 @@ $menuNav = [
       <div class="nav">
         <nav>
           <ul>
-            <?php foreach ($menuNav as $opciones): ?>
-              <li><?=$opciones?></li>
+            <?php foreach ($menuNav as $key=> $opciones): ?>
+              <li> <a href="#<?=$key?>"><?=$opciones?></a></li>
             <?php endforeach ?>
           </ul>
         </nav>
