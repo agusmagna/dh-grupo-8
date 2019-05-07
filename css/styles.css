@@ -308,6 +308,13 @@ body {
   }
   #quienes-somos .descripcion-nombre .juego-nombre .opciones .opcion-juego {
     padding: 5vh 5%;
+  }
+  #contacto {
+    margin: 0 5%;
+  }
+  #contacto h1 {
+    text-align: center;
+  }
 }
 @media (max-device-width:425px){
   .contenedor-login
