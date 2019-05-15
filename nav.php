@@ -5,6 +5,10 @@ $menuNav = [
   "productos"=>"Productos",
   "contacto"=>"Contacto",
 ];
+if (isset($_REQUEST['action']) && $_REQUEST['action']=='logout') {
+  session_destroy();
+  header('location:login.php');
+}
 
  ?>
 
@@ -32,8 +36,9 @@ $menuNav = [
           </ul>
         </nav>
         <div class="login">
-        <?php if (isset($_POST["email"])){ ?>
+        <?php if (isset($_SESSION['email'])){ ?>
           <a href="perfil.php"><i class="far fa-user-circle"></i></a>
+          <a href="?action=logout">Cerrar sesión</a>
         <?php } else { ?>
           <a href="login.php">Ingresar</a>
           <a href="register.php">Registrarse</a>

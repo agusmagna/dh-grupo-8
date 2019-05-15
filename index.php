@@ -1,4 +1,5 @@
 <?php
+session_start();
 $productosCapsulas = [];
 $saboresCodigo = ['chocofudge', 'blondie', 'scon','cookies','muffin', 'coquitos', 'crumble',];
 $sabores = ['Chocofudge','Blondie','Scon','Cookies de avena','Muffin','Coquitos','Crumble de manzana',];
