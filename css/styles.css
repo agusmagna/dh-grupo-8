@@ -5,7 +5,7 @@
 }
 
 body {
-	font-family: "Syncopate",sans-serif;
+	font-family: 'Roboto',sans-serif;
 	color: #000;
   font-size: 1rem;
 }
@@ -44,7 +44,7 @@ body {
 }
 .access-form button {
 	font-size: 16px;
-  font-family: "Syncopate",sans-serif;
+  font-family: "Roboto",sans-serif;
   background-color: #000;
   color: #fff;
   width: 55%;
@@ -259,7 +259,7 @@ body {
 }
  .contact-form button {
 	font-size: 16px;
-  font-family: "Syncopate",sans-serif;
+  font-family: "Roboto",sans-serif;
   background-color: #000;
   color: #fff;
   width: 30%;
