@@ -66,6 +66,17 @@ body {
 .remember-me input {
 	width: auto;
 }
+.password p a {
+  color: #000;
+  text-decoration: none;
+  font-size: 0.8em;
+  margin-top: 10px;
+  display: block;
+  text-align: right;
+}
+.password p a:hover{
+  color:rgba(0, 0, 0, 0.7);
+}
 /* Fin Login y Register */
 
 /* Home */

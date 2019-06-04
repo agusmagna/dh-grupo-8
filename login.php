@@ -22,6 +22,7 @@ if (!empty($_POST)) {
   }
   if (empty($errors)) {
     $_SESSION['email']=$_POST['email'];
+    setcookie('usuario',$_POST['email'],time()+60*60*24*30);
     header('location:index.php');
   }
 }
@@ -53,10 +54,13 @@ if (!empty($_POST)) {
           <label for="email">
             E-mail:
           </label>
-          <input type="text" id="email" name="email" placeholder="Email" value="<?= persistencia('email')?>" required>
+          <?php if(isset($_COOKIE['usuario'])) : ?>
+            <input type="text" id="email" name="email" placeholder="Email" value="<?= $_COOKIE['usuario']?>" required>
+          <?php else: ?><input type="text" id="email" name="email" placeholder="Email" value="<?= persistencia('email')?>" required>
+        <?php endif; ?>
           <p><?=$errors['email'][0] ?? ''?></p>
         </div>
-        <div class="field-group">
+        <div class="field-group password">
           <label for="pass">
             Contraseña:
           </label>
@@ -66,7 +70,7 @@ if (!empty($_POST)) {
         </div>
       <div class="field-group remember-me">
         <input type="checkbox" id="remember-me" name="remember-me" value="">
-        <label for="remember-me">Recordarme</label>
+        <label for="remember-me">Recordar usuario</label>
       </div>
         <button name="send">Ingresar</button>
       </form>
