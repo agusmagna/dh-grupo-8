@@ -1,10 +1,19 @@
 <?php
-$menuNav = [
-  "index.php"=>"Home",
-  "quienes-somos" => "Quienes somos",
-  "productos"=>"Productos",
-  "contacto"=>"Contacto",
-];
+if (strpos($_SERVER['SCRIPT_FILENAME'],'index.php')) {
+  $menuNav = [
+    "index.php"=>"Home",
+    "#quienes-somos" => "Quienes somos",
+    "#productos"=>"Productos",
+    "contacto.php"=>"Contacto",
+  ];
+} else {
+  $menuNav = [
+    "index.php"=>"Home",
+    "index.php#quienes-somos"=> "Quienes somos",
+    "productos.php"=>"Productos",
+    "contacto.php"=>"Contacto",
+  ];
+}
 if (isset($_REQUEST['action']) && $_REQUEST['action']=='logout') {
   session_destroy();
   header('location:login.php');
@@ -31,7 +40,7 @@ if (isset($_REQUEST['action']) && $_REQUEST['action']=='logout') {
         <nav>
           <ul>
             <?php foreach ($menuNav as $key=> $opciones): ?>
-              <li> <a href="#<?=$key?>"><?=$opciones?></a></li>
+              <li> <a href="<?=$key?>"><?=$opciones?></a></li>
             <?php endforeach ?>
           </ul>
         </nav>
