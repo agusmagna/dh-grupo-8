@@ -26,9 +26,11 @@ if (existe('apellido')) {
 }
 if (existe('email')) {
   if (vacio('email')){
-    $errors['email'][]='Debe completar el email';
+    $errors['email'][]='Debe completar el mail';
   } elseif (!filter_var($_POST['email'],FILTER_VALIDATE_EMAIL)){
     $errors['email'][]='El mail no tiene el formato correcto';
+  } elseif (verificacion($_POST['email'])) {
+    $errors['email'][]='El mail ya se encuentra registrado';
   }
 }
 if (existe('usuario')) {

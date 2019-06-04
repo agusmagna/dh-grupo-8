@@ -1,7 +1,6 @@
 <?php
 session_start();
-$email = 'hola@gmail.com';
-$password = 'holahola';
+require_once('functions.php');
 $errors=[];
 if (!empty($_POST)) {
   if (isset($_POST['email'])) {
@@ -9,15 +8,15 @@ if (!empty($_POST)) {
       $errors['email'][]='Debe completar el mail';
     } elseif (!filter_var($_POST['email'],FILTER_VALIDATE_EMAIL)) {
       $errors['email'][]='El mail no tiene el formato correcto';
-    } elseif ($_POST['email']!=$email){
-      $errors['email'][]= 'El mail ingresado no es correcto';
+    } elseif (!verificacion($_POST['email'])){
+      $errors['email'][]= 'El mail ingresado no se encuentra registrado';
     }
   }
 
   if (isset($_POST['password'])) {
     if ($_POST['password']=='') {
       $errors['password'][]='Debe completar la contraseña';
-    } elseif ($_POST['password']!=$password){
+    } elseif (!verificacion($_POST['email'],$_POST['password'])){
       $errors['password'][]= 'La constraseña ingresada no es correcta';
     }
   }
@@ -54,7 +53,7 @@ if (!empty($_POST)) {
           <label for="email">
             E-mail:
           </label>
-          <input type="text" id="email" name="email" placeholder="Email" value="" required>
+          <input type="text" id="email" name="email" placeholder="Email" value="<?= persistencia('email')?>" required>
           <p><?=$errors['email'][0] ?? ''?></p>
         </div>
         <div class="field-group">
@@ -63,6 +62,7 @@ if (!empty($_POST)) {
           </label>
           <input type="password" id="passsword" name="password" placeholder="Password" value="" required>
           <p><?=$errors['password'][0] ?? ''?></p>
+          <p><a href="cambioDePass.php">Olvidé mi contraseña</a></p>
         </div>
       <div class="field-group remember-me">
         <input type="checkbox" id="remember-me" name="remember-me" value="">

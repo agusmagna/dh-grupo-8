@@ -11,7 +11,8 @@ body {
 }
 /* Contenedor login y register */
 .contenedor-login,
-.contenedor-register {
+.contenedor-register,
+.contenedor-cambioDePass{
   height: 100vh;
   display: flex;
   flex-direction: column;
