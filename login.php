@@ -1,30 +1,44 @@
 <?php
 session_start();
 require_once('functions.php');
-$errors=[];
-if (!empty($_POST)) {
-  if (isset($_POST['email'])) {
-    if ($_POST['email']=='') {
-      $errors['email'][]='Debe completar el mail';
-    } elseif (!filter_var($_POST['email'],FILTER_VALIDATE_EMAIL)) {
-      $errors['email'][]='El mail no tiene el formato correcto';
-    } elseif (!verificacion($_POST['email'])){
-      $errors['email'][]= 'El mail ingresado no se encuentra registrado';
-    }
+
+DB::$HOST = 'localhost';
+DB::$DBNAME = 'tigout_db';
+DB::$USER = 'root';
+DB::$PASS = '';
+
+if ($_POST) {
+  $usuario = new User;
+  $validator = new UserValidator($user);
+  $validator->validateEmpty($_POST['email'],'email')
+            ->validateEmpty($_POST['pass'],'pass')
+  $validator->validatePass($_POST['pass'])
+
+  $pdo = DB::getInstance();
+  $consulta = $pdo->prepare("SELECT email from users WHERE email = :email ");
+  $consulta ->bindValue(:email, $_POST['email']);
+  $consulta->execute;
+  $resultado=$consulta->fetchAll(PDO::FETCH_ASSOC)
+  $validator->validateLoginEmail($_POST['email'],$resultado)
+  $hashpass= password_hash($_POST['pass'],PASSWORD_DEFAULT);
+  $validator->validateLoginPass($hashpass,$resultado)
+
+if($validator->IsErrorsEmpty()){
+  $usuario->setAvatar($resultado['avatar'])
+  $usuario->setName($resultado['nombre'])
+          ->setSurname($resultado['apellido'])
+          ->setCountry($resultado['pais'])
+          ->setEmail($resultado['email'])
+          ->setUsername($resultado['usuario'])
+          ->setPhoneNumber($_POST['telefono'])
+          ->setMet($_POST['conocio']);
+    $_SESSION['usuario']=$usuario;
+    setcookie('usuario',$usuario->getEmail(),time()+60*60*24*30);
+    header('location:perfil.php');
   }
 
-  if (isset($_POST['password'])) {
-    if ($_POST['password']=='') {
-      $errors['password'][]='Debe completar la contraseña';
-    } elseif (!verificacion($_POST['email'],$_POST['password'])){
-      $errors['password'][]= 'La constraseña ingresada no es correcta';
-    }
-  }
-  if (empty($errors)) {
-    $_SESSION['email']=$_POST['email'];
-    setcookie('usuario',$_POST['email'],time()+60*60*24*30);
-    header('location:index.php');
-  }
+
+
 }
 
  ?>
@@ -58,14 +72,14 @@ if (!empty($_POST)) {
             <input type="text" id="email" name="email" placeholder="Email" value="<?= $_COOKIE['usuario']?>" required>
           <?php else: ?><input type="text" id="email" name="email" placeholder="Email" value="<?= persistencia('email')?>" required>
         <?php endif; ?>
-          <p><?=$errors['email'][0] ?? ''?></p>
+          <p><?=isset($validator) ? $validator->getError('email') : ''?></p>
         </div>
         <div class="field-group password">
           <label for="pass">
             Contraseña:
           </label>
           <input type="password" id="passsword" name="password" placeholder="Password" value="" required>
-          <p><?=$errors['password'][0] ?? ''?></p>
+          <p><?=isset($validator) ? $validator->getError('pass') : ''?></p>
           <p><a href="cambioDePass.php">Olvidé mi contraseña</a></p>
         </div>
       <div class="field-group remember-me">

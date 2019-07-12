@@ -81,7 +81,7 @@ body {
 
 /* Home */
 #quienes-somos {
-  margin: 30px 2%;
+  margin: 30px 5%;
 }
 #quienes-somos h1{
   text-align: center;
@@ -115,10 +115,15 @@ body {
   display: flex;
   justify-content: space-around;
   text-align: center;
+
 }
 #quienes-somos .descripcion-empresa .comienzo,
 #quienes-somos .descripcion-empresa .recetas {
   width: 50%;
+  /* padding: 0 5%; */
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
 }
 #quienes-somos .descripcion-empresa .comienzo h2,
 #quienes-somos .descripcion-empresa .recetas h2 {
@@ -128,7 +133,7 @@ body {
 
 #quienes-somos .descripcion-empresa .recetas p{
   align-self: center;
-  margin-top: 7vh;
+
 }
 #quienes-somos .descripcion-nombre {
   margin-top: 5vh;
@@ -154,7 +159,7 @@ body {
   border-radius: 100%;
   background-color: black;
   color: white;
-  padding: 3% 2% 2% 2%;
+  padding: 3% 3% 2% 3%;
   text-align: center;
   margin-bottom: 0;
 }
@@ -169,6 +174,8 @@ body {
 /* Productos */
 #productos {
   margin-top: 7vh;
+  margin-right: 5%;
+  margin-left: 5%;
 }
 #productos h1{
   font-size: 3.5rem;

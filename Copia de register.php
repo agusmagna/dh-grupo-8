@@ -1,12 +1,5 @@
 <?php
 require_once('functions.php');
-require_once('Class/UserValidator.php');
-require_once('Class/User.php');
-
-DB::$HOST = 'localhost';
-DB::$DBNAME = 'tigout_db';
-DB::$USER = 'root';
-DB::$PASS = '';
 
 $conocio=[
   'so'=>'-Seleccione una opción-',
@@ -18,70 +11,101 @@ $conocio=[
   'ns'=>'Negocios o Supermercados',
 ];
 
+$errors=[];
+
 if ($_POST) {
-  $usuario = new User;
+  $user = new User;
   $validator = new UserValidator($user);
-  $validator->validateEmpty($_POST['nombre'],'name')
-            ->validateEmpty($_POST['apellido'],'surname')
-            ->validateEmpty($_POST['email'],'email')
-            ->validateEmpty($_POST['usuario'],'username')
-            ->validateEmpty($_POST['pais'],'country')
-            ->validateEmpty($_POST['pass'],'pass')
-            ->validateEmpty($_POST['confpass'],'confirmpass');
-  $validator->validateUsername($_POST['usuario']);
-  $validator->validateAvatar();
-  if (!vacio('telefono')) {
-    $validator->validateIsNumeric($_POST['telefono']);
+  $validator->validateEmpty($_POST['nombre'],'username')->validateEmpty($_POST['nombre'],'username')
+}
+if (existe('nombre')) {
+  if (vacio('nombre')) {
+      $errors['nombre'][]='Debe completar el nombre';
   }
-  $validator->validatePass($_POST['pass'])
-            ->validatePassConfirm($_POST['pass'],$_POST['confpass']);
-  if (!isset($_POST['terms'])){
-        $validator->validateTerms();
+}
+if (existe('apellido')) {
+  if (vacio('apellido')){
+    $errors['apellido'][]='Debe completar el apellido';
+  }
+}
+if (existe('email')) {
+  if (vacio('email')){
+    $errors['email'][]='Debe completar el mail';
+  } elseif (!filter_var($_POST['email'],FILTER_VALIDATE_EMAIL)){
+    $errors['email'][]='El mail no tiene el formato correcto';
+  } elseif (verificacion($_POST['email'])) {
+    $errors['email'][]='El mail ya se encuentra registrado';
+  }
+}
+if (existe('usuario')) {
+  if (vacio('usuario')){
+    $errors['usuario'][]='Debe completar el usuario';
+  } elseif (strlen($_POST['usuario'])< 3 || strlen($_POST['usuario']) > 10){
+    $errors['usuario'][]='El usuario debe contener entre 3 y 10 caracteres';
+  }
+}
+if (existe('pais')) {
+  if (vacio('pais')){
+    $errors['pais'][]='Debe completar el país de nacimiento';
+  }
+}
+if (existe('telefono')) {
+  if (!empty($_POST['telefono']) && !is_numeric($_POST['telefono'])){
+    $errors['telefono'][]='El teléfono no es un número';
+  }
+}
+if(empty($_FILES) || empty($_FILES['avatar']['name'])){
+  $errors['avatar'][]='Por favor seleccione una imagen';
+  } else {
+    $ext=pathinfo($_FILES['avatar']['name'],PATHINFO_EXTENSION);
+
+    if (!in_array($ext, ['jpg', 'jpeg', 'png'])) {
+      $errors['avatar'][]='El archivo debe ser .jpg,.jpeg o .png';
     }
-
-
-  $pdo = DB::getInstance();
-  $consulta = $pdo->prepare("SELECT email from users WHERE email = :email ");
-  $consulta ->bindValue(:email, $_POST['email']);
-  $consulta->execute;
-  $resultado=$consulta->fetchAll(PDO::FETCH_ASSOC)
-  $validator->validateEmail($_POST['email'],$resultado)
-  unset($pdo);
-
-
-if($validator->IsErrorsEmpty()){
-  $usuario->setAvatar($_FILES)
-  move_uploaded_file($_FILES['avatar']['tmp_name'],$usuarios->getAvatar());
+  }
+  if (existe('pass')) {
+    if (vacio('pass')){
+      $errors['pass'][]='Debe completar la contraseña';
+    } elseif (strlen($_POST['pass']) < 8 || strlen($_POST['pass']) > 12){
+        $errors['pass'][]='La contraseña debe tener entre 8 y 12 caracteres';
+    }
+    if (existe('confpass')) {
+      if (vacio('confpass')){
+    if ($_POST['pass']!= $_POST['confpass']){
+        $errors['confpass'][]= 'Las contraseñas no coinciden';
+      }
+    }
+  }
+}
+if (!isset($_POST['terms'])){
+      $errors['terms'][]= 'Debe aceptar los términos y condiciones';
+  }
+if(empty($errors)){
+  $hashedname = md5($_FILES['avatar']['name']. '.' . $ext);
+  $path = 'imgavatar/' . $hashedname;
+  move_uploaded_file($_FILES['avatar']['tmp_name'],$path);
   $hashpass= password_hash($_POST['pass'],PASSWORD_DEFAULT);
-
-  $usuario->setName($_POST['nombre'])
-          ->setSurname($_POST['apellido'])
-          ->setCountry($_POST['pais'])
-          ->setEmail($_POST['email'])
-          ->setUsername($_POST['usuario'])
-          ->setPass($hashpass)
+  $usuario = [
+    'nombre'=>$_POST['nombre'],
+    'apellido'=>$_POST['apellido'],
+    'pais'=>$_POST['pais'],
+    'email'=>$_POST['email'],
+    'usuario'=>$_POST['usuario'],
+    'pass'=> $hashpass,
+    'avatar'=> $path,
+  ];
   if (existe('telefono')){
-    $usuario->setPhoneNumber($_POST['telefono']);
+    $usuario['telefono']=$_POST['telefono'];
   }
   if (existe('conocio')){
-    $usuario->setMet($_POST['conocio']);
+    $usuario['conocio']=$_POST['conocio'];
   }
-
-  $pdo = DB::getInstance();
-  $insert = $pdo->prepare("INSERT into users VALUE(NULL,:fecha,NULL,:nombre,:apellido,:pais,:email,:usuario,:pass,:telefono,:met)");
-  $intert->bindValue(:nombre,$usuario->getName());
-  $intert->bindValue(:apellido,$usuario->getSurname());
-  $intert->bindValue(:pais,$usuario->getCountry());
-  $intert->bindValue(:email,$usuario->getEmail());
-  $intert->bindValue(:usuario,$usuario->getUsername());
-  $intert->bindValue(:pass,$usuario->getPass());
-  $intert->bindValue(:telefono,$usuario->getPhoneNumber());
-  $intert->bindValue(:met,$usuario->getMet());
-  $intert->bindValue(:avatar,$usuario->getAvatar());
-  unset($pdo);
-  header('location:registroExitoso.php');
-}
-
+  $archivo=file_get_contents('usuarios.json');
+  $data=json_decode($archivo,true);
+  $data[]=$usuario;
+  $jsonFinal=json_encode($data);
+  file_put_contents('usuarios.json',$jsonFinal);
+  header('location:index.php');
 }
  ?>
 
@@ -109,14 +133,14 @@ if($validator->IsErrorsEmpty()){
           Nombre:
         </label>
         <input id="nombre" type="text" name="nombre" value="<?= persistencia('nombre')?>">
-        <p><?= isset($validator) ? $validator->getError('name') : ''?></p>
+        <p><?= $errors['nombre'][0] ?? ''?></p>
       </div>
       <div class="field-group">
         <label for="apellido">
           Apellido:
         </label>
         <input id="apellido" type="text" name="apellido" value="<?= persistencia('apellido')?>">
-        <p><?= isset($validator) ? $validator->getError('surname'): ''?></p>
+        <p><?= $errors['apellido'][0]?? ''?></p>
       </div>
 
       <div class="field-group">
@@ -124,7 +148,7 @@ if($validator->IsErrorsEmpty()){
           E-mail:
         </label>
         <input id="email" type="text" name="email" value="<?= persistencia('email')?>">
-        <p><?= isset($validator) ? $validator->getError('email') : ''?></p>
+        <p><?= $errors['email'][0] ?? ''?></p>
       </div>
 
       <div class="field-group">
@@ -132,21 +156,21 @@ if($validator->IsErrorsEmpty()){
           Usuario:
         </label>
         <input id="usuario" type="text" name="usuario" value="<?= persistencia('usuario')?>">
-        <p><?= isset($validator) ? $validator->getError('username') : ''?></p>
+        <p><?= $errors['usuario'][0] ?? ''?></p>
       </div>
       <div class="field-group">
         <label for="pais">
           País de nacimiento:
         </label>
         <input id="pais" type="text" name="pais" value="<?= persistencia('pais')?>">
-        <p><?= isset($validator) ? $validator->getError('country') : ''?></p>
+        <p><?= $errors['pais'][0] ?? ''?></p>
       </div>
       <div class="field-group">
         <label for="telefono">
           Teléfono (opcional):
         </label>
         <input id="telefono" type="text" name="telefono" value="<?= persistencia('telefono')?>">
-        <p><?= isset($validator) ? $validator->getError('phoneNumber'): '' ?></p>
+        <p><?= $errors['telefono'][0] ?? ''?></p>
       </div>
       <div class="field-group">
         <label for="avatar">
@@ -178,20 +202,20 @@ if($validator->IsErrorsEmpty()){
           Contraseña:
         </label>
         <input id="pass" type="password" name="pass" value="" >
-        <p><?= isset($validator) ? $validator->getError('pass'): ''?></p>
+        <p><?= $errors['pass'][0] ?? ''?></p>
       </div>
       <div class="field-group">
         <label for="confpass">
           Confirmar Contraseña:
         </label>
         <input id="confpass" type="password" name="confpass" value="" >
-        <p><?= isset($validator) ? $validator->getError('confirmpass'): ''?></p>
+        <p><?= $errors['confpass'][0] ?? ''?></p>
       </div>
 
       <div class="field-group terms">
         <input type="checkbox" id="terms" name="terms" value="si">
         <label for="terms">Acepto los términos y condiciones</label>
-        <p><?= isset($validator) ? $validator->getError('terms'): ''?></p>
+        <p><?= $errors['terms'][0] ?? ''?></p>
       </div>
 
         <button type="submit" name="button">
