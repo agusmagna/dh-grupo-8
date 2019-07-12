@@ -123,33 +123,6 @@ foreach ($saboresCodigo as $key => $value) {
     </div>
   </section>
 
-  <section id="contacto">
-    <div class="contact-container">
-    <h1>Tu comentario nos interesa</h1>
-    <form class="contact-form" action="index.php" method="post">
-      <div class="field-contact">
-        <label for="nombre">
-          Nombre:
-        </label>
-        <input type="text" id="nombre" name="nombre" placeholder="Nombre" value="" required>
-      </div>
-        <div class="field-contact">
-          <label for="email">
-            E-mail:
-          </label>
-          <input type="email" id="email" name="email" placeholder="Email" value="" required>
-        </div>
-        <div class="field-contact">
-          <label for="Comentarios">
-            Comentarios:
-          </label>
-        <textarea name="comments" rows="8" cols="60"> </textarea>
-        <button type="submit" name="send">Enviar</button>
-      </form>
-      </div>
-    </section>
-
-
   <?php require_once("footer.php") ?>
 
 <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>

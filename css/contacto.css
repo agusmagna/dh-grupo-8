@@ -1,0 +1,57 @@
+/* Contacto */
+#contacto {
+  margin-top: 7vh;
+}
+#contacto .contact-container {
+	max-width: 800px;
+	margin: 0 auto;
+ }
+#Contacto h1{
+  font-size: 3.5rem;
+  font-weight: bold;
+  text-align: center;
+  margin-bottom: 5vh;
+  text-transform: uppercase;
+}
+.contact-form {
+	overflow: hidden;
+}
+.contact-form label {
+	font-size: 16px;
+  margin-top: 10px;
+  margin-bottom: 5px;
+	display: inline-block;
+  color: #424242;
+}
+ .contact-form button {
+	font-size: 16px;
+  font-family: "Roboto",sans-serif;
+  background-color: #000;
+  color: #fff;
+  width: 30%;
+  padding: 8px 14px;
+  cursor: pointer;
+  text-transform: uppercase;
+  margin-bottom: 10px;
+}
+.field-contact input {
+	width: 100%;
+  border: 1px solid #ccc;
+  padding: 8px 38px 8px 8px;
+  margin: 10px auto;
+}
+.field-contact textarea {
+  margin: 15px auto;
+}
+
+
+@media (max-device-width:768px){
+
+  #contacto {
+    margin: 0 5%;
+  }
+  #contacto h1 {
+    text-align: center;
+    margin-top: 20px;
+  }
+}
