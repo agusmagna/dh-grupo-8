@@ -1,6 +1,9 @@
 <?php
 session_start();
 require_once('functions.php');
+require_once('Class/UserValidator.php');
+require_once('Class/User.php');
+require_once('Class/Db.php');
 
 DB::$HOST = 'localhost';
 DB::$DBNAME = 'tigout_db';
@@ -9,22 +12,22 @@ DB::$PASS = '';
 
 if ($_POST) {
   $usuario = new User;
-  $validator = new UserValidator($user);
+  $validator = new UserValidator($usuario);
   $validator->validateEmpty($_POST['email'],'email')
-            ->validateEmpty($_POST['pass'],'pass')
-  $validator->validatePass($_POST['pass'])
+            ->validateEmpty($_POST['pass'],'pass');
+  $validator->validatePass($_POST['pass']);
 
   $pdo = DB::getInstance();
-  $consulta = $pdo->prepare("SELECT email from users WHERE email = :email ");
-  $consulta ->bindValue(:email, $_POST['email']);
+  $consulta = $pdo->prepare("SELECT * from users WHERE email = :email ");
+  $consulta ->bindValue('email', $_POST['email']);
   $consulta->execute;
-  $resultado=$consulta->fetchAll(PDO::FETCH_ASSOC)
-  $validator->validateLoginEmail($_POST['email'],$resultado)
+  $resultado=$consulta->fetchAll(PDO::FETCH_ASSOC);
+  $validator->validateLoginEmail($_POST['email'],$resultado);
   $hashpass= password_hash($_POST['pass'],PASSWORD_DEFAULT);
-  $validator->validateLoginPass($hashpass,$resultado)
+  $validator->validateLoginPass($hashpass,$resultado);
 
 if($validator->IsErrorsEmpty()){
-  $usuario->setAvatar($resultado['avatar'])
+  $usuario->setAvatar($resultado['avatar']);
   $usuario->setName($resultado['nombre'])
           ->setSurname($resultado['apellido'])
           ->setCountry($resultado['pais'])
@@ -78,7 +81,7 @@ if($validator->IsErrorsEmpty()){
           <label for="pass">
             Contraseña:
           </label>
-          <input type="password" id="passsword" name="password" placeholder="Password" value="" required>
+          <input type="password" id="passs" name="pass" placeholder="Password" value="" required>
           <p><?=isset($validator) ? $validator->getError('pass') : ''?></p>
           <p><a href="cambioDePass.php">Olvidé mi contraseña</a></p>
         </div>

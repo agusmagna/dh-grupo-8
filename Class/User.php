@@ -50,7 +50,7 @@ class User
     $ext=pathinfo($_FILES['avatar']['name'],PATHINFO_EXTENSION);
     $hashedname = md5($archivo['avatar']['name']. '.' . $ext);
     $path = 'imgavatar/' . $hashedname;
-    $this->avatar = $path
+    $this->avatar = $path;
     return $this;
   }
   public function getPhoneNumber(): integer{

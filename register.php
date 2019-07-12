@@ -2,6 +2,7 @@
 require_once('functions.php');
 require_once('Class/UserValidator.php');
 require_once('Class/User.php');
+require_once('Class/Db.php');
 
 DB::$HOST = 'localhost';
 DB::$DBNAME = 'tigout_db';
@@ -69,15 +70,15 @@ if($validator->IsErrorsEmpty()){
 
   $pdo = DB::getInstance();
   $insert = $pdo->prepare("INSERT into users VALUE(NULL,:fecha,NULL,:nombre,:apellido,:pais,:email,:usuario,:pass,:telefono,:met)");
-  $intert->bindValue(:nombre,$usuario->getName());
-  $intert->bindValue(:apellido,$usuario->getSurname());
-  $intert->bindValue(:pais,$usuario->getCountry());
-  $intert->bindValue(:email,$usuario->getEmail());
-  $intert->bindValue(:usuario,$usuario->getUsername());
-  $intert->bindValue(:pass,$usuario->getPass());
-  $intert->bindValue(:telefono,$usuario->getPhoneNumber());
-  $intert->bindValue(:met,$usuario->getMet());
-  $intert->bindValue(:avatar,$usuario->getAvatar());
+  $intert->bindValue('nombre',$usuario->getName());
+  $intert->bindValue('apellido',$usuario->getSurname());
+  $intert->bindValue('pais',$usuario->getCountry());
+  $intert->bindValue('email',$usuario->getEmail());
+  $intert->bindValue('usuario',$usuario->getUsername());
+  $intert->bindValue('pass',$usuario->getPass());
+  $intert->bindValue('telefono',$usuario->getPhoneNumber());
+  $intert->bindValue('met',$usuario->getMet());
+  $intert->bindValue('avatar',$usuario->getAvatar());
   unset($pdo);
   header('location:registroExitoso.php');
 }

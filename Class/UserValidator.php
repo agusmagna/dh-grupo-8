@@ -20,7 +20,7 @@ class UserValidator{
         return $this;
       }
     }
-  public function validateLoginEmail($resultado)
+  public function validateLoginEmail($email,$resultado)
     {
       if (!filter_var($email,FILTER_VALIDATE_EMAIL)) {
         $this->errors['email'][]='El email no tiene el formato correcto';
@@ -80,7 +80,7 @@ class UserValidator{
     {
       if(!empty($resultado)){
         if ($pass != $resultado['password']) {
-          $this->errors['pass'][]= 'La contraseña no es correcta'
+          $this->errors['pass'][]= 'La contraseña no es correcta';
         }
       }
     }
