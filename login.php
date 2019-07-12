@@ -27,19 +27,25 @@ if ($_POST) {
   $validator->validateLoginPass($_POST['pass'],$resultado);
 
 if($validator->IsErrorsEmpty()){
-  $usuario->setAvatarLogin($resultado[0]['avatar']);
-  $usuario->setName($resultado[0]['first_name'])
-          ->setSurname($resultado[0]['last_name'])
-          ->setCountry($resultado[0]['country_born'])
-          ->setEmail($resultado[0]['email'])
-          ->setUsername($resultado[0]['username'])
-          ->setPhoneNumber($resultado[0]['phone_number']);
-  if($resultado[0]['source_referral']!='NULL'){
-          $usuario->setMet($resultado[0]['source_referral']);
-  }
-
+  // $usuario->setAvatarLogin($resultado[0]['avatar']);
+  // $usuario->setName($resultado[0]['first_name'])
+  //         ->setSurname($resultado[0]['last_name'])
+  //         ->setCountry($resultado[0]['country_born'])
+  //         ->setEmail($resultado[0]['email'])
+  //         ->setUsername($resultado[0]['username'])
+  //         ->setPhoneNumber($resultado[0]['phone_number']);
+  // if($resultado[0]['source_referral']!='NULL'){
+  //         $usuario->setMet($resultado[0]['source_referral']);
+  // }
+    $usuario = [
+      'avatar'=>$resultado[0]['avatar'],
+      'first_name'=>($resultado[0]['first_name']),      'last_name'=>($resultado[0]['last_name']),      'country'=>($resultado[0]['country_born']),      'email'=>($resultado[0]['email']),      'username'=>($resultado[0]['username']),      'phone_number'=>($resultado[0]['phone_number'])
+    ];
+    if($resultado[0]['source_referral']!='NULL'){
+             $usuario['met']=$resultado[0]['source_referral'];
+     }
     $_SESSION['usuario']=$usuario;
-    setcookie('usuario',$usuario->getEmail(),time()+60*60*24*30);
+    setcookie('usuario',$usuario['email'],time()+60*60*24*30);
     header('location:perfil.php');
   }
 

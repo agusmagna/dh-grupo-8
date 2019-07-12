@@ -1,5 +1,15 @@
 <?php
 session_start();
+require_once('Class/User.php');
+$user = new User;
+$user->setAvatarLogin($_SESSION['usuario']['avatar']);
+$user->setName($_SESSION['usuario']['first_name'])
+        ->setSurname($_SESSION['usuario']['last_name'])
+        ->setCountry($_SESSION['usuario']['country'])
+        ->setEmail($_SESSION['usuario']['email'])
+        ->setUsername($_SESSION['usuario']['username'])
+        ->setPhoneNumber($_SESSION['usuario']['phone_number'])
+        ->setMet($_SESSION['usuario']['met']);
 
  ?>
 
@@ -7,10 +17,16 @@ session_start();
 <html lang="en" dir="ltr">
   <head>
     <meta charset="utf-8">
-    <title></title>
+    <title>TIGOUT - Perfil</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="css/styles.css">
   </head>
   <body>
-    <?= $_SESSION['email'] ?? ''?>
+    <?php require_once("nav.php") ?>
+
+    <h1>¡Hola <?= $user->getName() ?? ''?>!</h1>
+
     <?php if (isset($_SESSION['direccion'])) : ?>
 
     <?php elseif (!isset($_SESSION['direccion'])) : ?>
@@ -42,5 +58,7 @@ session_start();
       <button>Guardar datos</button>
     </form>
   <?php endif ?>
+
+  <?php require_once("footer.php") ?>
   </body>
 </html>
