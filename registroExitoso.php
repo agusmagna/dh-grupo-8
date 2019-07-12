@@ -12,7 +12,7 @@
   <body>
     <div class="contenedor-register">
     <?php require_once("nav.php") ?>
-    <section class="form-container">
+    <section class="register">
 
       <h1>¡Usted se ha registrado con éxito!</h1>
 

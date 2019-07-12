@@ -20,21 +20,24 @@ if ($_POST) {
   $pdo = DB::getInstance();
   $consulta = $pdo->prepare("SELECT * from users WHERE email = :email ");
   $consulta ->bindValue('email', $_POST['email']);
-  $consulta->execute;
+  $consulta->execute();
   $resultado=$consulta->fetchAll(PDO::FETCH_ASSOC);
   $validator->validateLoginEmail($_POST['email'],$resultado);
-  $hashpass= password_hash($_POST['pass'],PASSWORD_DEFAULT);
-  $validator->validateLoginPass($hashpass,$resultado);
+  // $hashpass= password_hash($_POST['pass'],PASSWORD_DEFAULT);
+  $validator->validateLoginPass($_POST['pass'],$resultado);
 
 if($validator->IsErrorsEmpty()){
-  $usuario->setAvatar($resultado['avatar']);
-  $usuario->setName($resultado['nombre'])
-          ->setSurname($resultado['apellido'])
-          ->setCountry($resultado['pais'])
-          ->setEmail($resultado['email'])
-          ->setUsername($resultado['usuario'])
-          ->setPhoneNumber($_POST['telefono'])
-          ->setMet($_POST['conocio']);
+  $usuario->setAvatarLogin($resultado[0]['avatar']);
+  $usuario->setName($resultado[0]['first_name'])
+          ->setSurname($resultado[0]['last_name'])
+          ->setCountry($resultado[0]['country_born'])
+          ->setEmail($resultado[0]['email'])
+          ->setUsername($resultado[0]['username'])
+          ->setPhoneNumber($resultado[0]['phone_number']);
+  if($resultado[0]['source_referral']!='NULL'){
+          $usuario->setMet($resultado[0]['source_referral']);
+  }
+
     $_SESSION['usuario']=$usuario;
     setcookie('usuario',$usuario->getEmail(),time()+60*60*24*30);
     header('location:perfil.php');
@@ -81,7 +84,7 @@ if($validator->IsErrorsEmpty()){
           <label for="pass">
             Contraseña:
           </label>
-          <input type="password" id="passs" name="pass" placeholder="Password" value="" required>
+          <input type="password" id="pas" name="pass" placeholder="Password" value="" required>
           <p><?=isset($validator) ? $validator->getError('pass') : ''?></p>
           <p><a href="cambioDePass.php">Olvidé mi contraseña</a></p>
         </div>

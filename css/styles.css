@@ -77,6 +77,30 @@ body {
 .password p a:hover{
   color:rgba(0, 0, 0, 0.7);
 }
+.register h1 {
+	text-align: center;
+	text-transform: uppercase;
+  font-size: 40px;
+  margin: 20px auto;
+  padding-top: 10px;
+}
+.register h3 {
+	text-align: center;
+	text-transform: uppercase;
+  font-size: 20px;
+  margin: 20px auto;
+  padding: 10px;
+  background-color: black;
+  width: 20%;
+}
+.register h3 a {
+	text-decoration: none;
+  color:white;
+}
+.register h3 a:hover{
+	text-decoration: none;
+  color:#DDD;
+}
 /* Fin Login y Register */
 
 /* Home */

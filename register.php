@@ -21,7 +21,7 @@ $conocio=[
 
 if ($_POST) {
   $usuario = new User;
-  $validator = new UserValidator($user);
+  $validator = new UserValidator($usuario);
   $validator->validateEmpty($_POST['nombre'],'name')
             ->validateEmpty($_POST['apellido'],'surname')
             ->validateEmpty($_POST['email'],'email')
@@ -43,16 +43,16 @@ if ($_POST) {
 
   $pdo = DB::getInstance();
   $consulta = $pdo->prepare("SELECT email from users WHERE email = :email ");
-  $consulta ->bindValue(:email, $_POST['email']);
+  $consulta ->bindValue('email', $_POST['email']);
   $consulta->execute;
-  $resultado=$consulta->fetchAll(PDO::FETCH_ASSOC)
-  $validator->validateEmail($_POST['email'],$resultado)
+  $resultado=$consulta->fetchAll(PDO::FETCH_ASSOC);
+  $validator->validateEmail($_POST['email'],$resultado);
   unset($pdo);
 
 
 if($validator->IsErrorsEmpty()){
-  $usuario->setAvatar($_FILES)
-  move_uploaded_file($_FILES['avatar']['tmp_name'],$usuarios->getAvatar());
+  $usuario->setAvatar($_FILES);
+  move_uploaded_file($_FILES['avatar']['tmp_name'],$usuario->getAvatar());
   $hashpass= password_hash($_POST['pass'],PASSWORD_DEFAULT);
 
   $usuario->setName($_POST['nombre'])
@@ -60,25 +60,27 @@ if($validator->IsErrorsEmpty()){
           ->setCountry($_POST['pais'])
           ->setEmail($_POST['email'])
           ->setUsername($_POST['usuario'])
-          ->setPass($hashpass)
-  if (existe('telefono')){
+          ->setPass($hashpass);
+  if (!vacio('telefono')){
     $usuario->setPhoneNumber($_POST['telefono']);
   }
-  if (existe('conocio')){
+  if (!vacio('conocio')){
     $usuario->setMet($_POST['conocio']);
   }
 
   $pdo = DB::getInstance();
-  $insert = $pdo->prepare("INSERT into users VALUE(NULL,:fecha,NULL,:nombre,:apellido,:pais,:email,:usuario,:pass,:telefono,:met)");
-  $intert->bindValue('nombre',$usuario->getName());
-  $intert->bindValue('apellido',$usuario->getSurname());
-  $intert->bindValue('pais',$usuario->getCountry());
-  $intert->bindValue('email',$usuario->getEmail());
-  $intert->bindValue('usuario',$usuario->getUsername());
-  $intert->bindValue('pass',$usuario->getPass());
-  $intert->bindValue('telefono',$usuario->getPhoneNumber());
-  $intert->bindValue('met',$usuario->getMet());
-  $intert->bindValue('avatar',$usuario->getAvatar());
+  $insert = $pdo->prepare("INSERT into users VALUE(NULL,:nombre,:apellido,:email,:usuario,:pais,:telefono,:avatar,:met,:pass)");
+  $insert->bindValue('nombre',$usuario->getName());
+  $insert->bindValue('apellido',$usuario->getSurname());
+  $insert->bindValue('pais',$usuario->getCountry());
+  $insert->bindValue('email',$usuario->getEmail());
+  $insert->bindValue('usuario',$usuario->getUsername());
+  $insert->bindValue('pass',$usuario->getPass());
+  $insert->bindValue('telefono',$usuario->getPhoneNumber());
+  $insert->bindValue('met',$usuario->getMet());
+  $insert->bindValue('avatar',$usuario->getAvatar());
+
+  $insert->execute();
   unset($pdo);
   header('location:registroExitoso.php');
 }
@@ -98,8 +100,8 @@ if($validator->IsErrorsEmpty()){
     </title>
   </head>
   <body>
-    <div class="contenedor-register">
     <?php require_once("nav.php") ?>
+    <div class="contenedor-register">
     <section class="form-container">
     <form class="access-form" action="register.php" method="post" enctype="multipart/form-data">
       <h1>
@@ -204,9 +206,10 @@ if($validator->IsErrorsEmpty()){
         </button>
 
     </form>
-</section>
-
+  </section>
   <?php require_once("footer.php") ?>
   </div>
+
+
   </body>
 </html>

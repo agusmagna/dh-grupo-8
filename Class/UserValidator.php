@@ -79,7 +79,7 @@ class UserValidator{
   public function validateLoginPass($pass,$resultado)
     {
       if(!empty($resultado)){
-        if ($pass != $resultado['password']) {
+        if (!password_verify($pass,$resultado[0]['password'])) {
           $this->errors['pass'][]= 'La contraseña no es correcta';
         }
       }
