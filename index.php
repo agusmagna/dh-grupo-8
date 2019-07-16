@@ -13,7 +13,7 @@ $precios["chocofudge"]='$ 35';
 
 foreach ($saboresCodigo as $key => $value) {
   $productosCapsulas[$key]["titulo"] = $sabores[$key];
-  $productosCapsulas[$key]["imagen"] = 'img/producto-' . $value . ".png";
+  $productosCapsulas[$key]["imagen"] = 'img/producto/producto-' . $value . ".png";
   $productosCapsulas[$key]["precio"] = $precios[$value] . ' c/u';
 }
 
